@@ -1,7 +1,13 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.dao.StudentData;
+import com.example.demo.services.StudentService;
 
 @RestController
 public class TestingController {
@@ -25,4 +31,19 @@ public class TestingController {
     	return "Spring Boot is Good and Robust";
     }
     
+    @Autowired
+    StudentService ss;
+    
+    @GetMapping("/insert")
+    public String insertStu()
+    {
+    	ss.insertStudent();
+    	return "Student Data Inserted Into DataBase Successfully!!!!";
+    }
+    
+    @GetMapping("/get")
+    public List<StudentData> retriveData()
+    {
+        return ss.getStudentData();
+    }
 }
